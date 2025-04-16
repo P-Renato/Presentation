@@ -1,0 +1,316 @@
+:root{
+  --bgImg:  rgba(31, 221, 132, 0.904);
+  --bgColor: rgb(97, 97, 247); 
+  --nameBackgroundColor: rgba(0, 0, 0, 0.685);
+  --borderColor: rgba(101, 201, 35, 0.685);
+  --borderColorStats: rgba(243, 120, 37, 0.829);
+  --borderColorAbilities: rgba(211, 69, 93, 0.712);
+  --nameFont: "Vast Shadow", serif;
+  --statFont: "Instrument Serif", serif;
+  --statPowers: "Sancreek", serif;
+  --numberFont: "Roboto Mono", monospace;
+}
+
+body {
+  background: linear-gradient(45deg, rgba(173, 68, 177, 0.781), rgba(81, 81, 230, 0.644));
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(45deg rgb(39, 133, 255) rgb(184, 135, 1));
+
+  h1 {
+    font-family: var(--nameFont);
+    font-size: 8em;
+    color: var(--bgImg);
+  }
+}
+
+.carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 40%;
+  gap: 2rem;
+
+
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  section {
+    scroll-snap-align: center;
+    background: var(--bgImg);
+    background: var(--bgColor);
+    
+    border: 8px solid var(--nameBackgroundColor);
+    border-radius: 32px;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .pokemon-content{
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 40%;
+
+      img {
+        min-width: 20vw;
+        max-height: 30vh;
+        cursor: pointer;
+      }
+  
+      h1{
+        font-family: var(--statFont);
+        color: var(--borderColor);
+        border-radius: 12em;
+        padding: .4em;
+        background-color: var(--nameBackgroundColor);
+      }
+    }
+    
+
+    .stats{
+      margin: 3rem;
+      padding: 3em;
+
+      .left{
+        float: left;
+        // font-family: var(--statPowers);
+      }
+      .right {
+          float: right;
+          // font-family: var(--numberFont);
+        }
+
+      h2 {
+        font-family: var(--nameFont);
+        width: 100%;
+        
+      }
+    }
+    .abilities {
+      margin: 3rem;
+    }
+  }
+
+  &::scroll-button(left) {
+    content: "⬅" / "Scroll Left";
+  }
+  
+  &::scroll-button(right) {
+    content: "⮕" / "Scroll Right";
+  }
+
+  &::scroll-button(*)::focus-visible {
+    outline-offset: 5px;
+  }
+}
+
+.carousel section:nth-child(odd){
+  font-size: 20px;
+  background-color: var(--bgColor);
+    .stats {
+      background-color: var(--bgImg);
+      // border: 5px solid var(--borderColorStats);
+      border: 5px solid var(--nameBackgroundColor);
+      
+    }
+    .abilities {
+      background-color: var(--bgImg);
+      // border: 5px solid var(--borderColorStats);
+      border: 5px solid var(--nameBackgroundColor);
+    }
+}
+
+.carousel section:nth-child(even){
+  background-color: var(--bgImg);
+  .stats {
+    background-color: var(--bgColor);
+    // border: 5px solid var(--borderColorAbilities);
+    border: 5px solid var(--nameBackgroundColor);
+  }
+  .abilities {
+    background-color: var(--bgColor);
+    // border: 5px solid var(--borderColorAbilities);
+    border: 5px solid var(--nameBackgroundColor);
+  }
+}
+
+img.enlarged {
+  transform: scale(1.5);
+  transition: transform 0.3s ease;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img.zoomed {
+  position: relative;
+  // top: 280rem;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2); // Center & zoom
+  transition: transform 0.4s ease, top 0.4s ease, left 0.4s ease;
+  z-index: 1000;
+  cursor: zoom-out;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+
+}
+
+/* Optional: dim background using a full-screen overlay */
+.zoom-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+
+.zoomed-name {
+  position: relative;
+  top: 10rem;
+  left: 150%;
+  transform: translateX(-50%);
+  width: 100vw;
+  z-index: 1001;
+  transition: all 0.3s ease;
+  
+  // text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+
+@media ( max-width: 360px) {
+  header {
+    h1 {
+      text-align: center;
+    }
+  }
+  .carousel {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  
+
+  
+    section {
+
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      background-color: rgb(90, 223, 28);
+      background: var(--bgColor);
+      
+      border: 13px solid var(--borderColor);
+      border-radius: 12px;
+
+    }
+
+
+    .stats{
+      margin: 3rem;
+
+      .left{
+        float: left;
+        // font-family: var(--statPowers);
+      }
+      .right {
+          float: right;
+          // font-family: var(--numberFont);
+        }
+
+      h2 {
+        font-family: var(--nameFont);
+        width: 100%;
+      }
+    }
+    .abilities {
+      margin: 3rem;
+
+      h2 {
+        font-size: 2rem;
+        font-family: var(--nameFont);
+      }
+    }
+
+    display: flex;
+    align-items: center;
+    
+    .pokemon-content{
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 60%;
+
+      img {
+        min-width: 20vw;
+        max-height: 30vh;
+        cursor: pointer;
+        background: linear-gradient(45deg rgb(39, 133, 255) rgb(184, 135, 1));
+      }
+  
+      h1{
+        font-family: var(--statFont);
+        color: var(--borderColor);
+      }
+    }
+  }
+
+
+  img.enlarged {
+    transform: scale(2.5);
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  img.zoomed {
+    position: relative;
+    // top: 280rem;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2); // Center & zoom
+    transition: transform 0.4s ease, top 0.4s ease, left 0.4s ease;
+    z-index: 1000;
+    cursor: zoom-out;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+  
+  }
+  
+  /* Optional: dim background using a full-screen overlay */
+  .zoom-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  
+  .zoomed-name {
+    position: relative;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    
+    // text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+  }
+
+}
